@@ -6,7 +6,7 @@ import time
 import requests
 
 TELEGRAM_TOKEN = "9016400521:AAGT_yFHf5R1hr9FKKvXztVjwscHQHFOCJI"
-GEMINI_API_KEY = "AQ.Ab8RN6I47WlcZFyx4jIhdZoCwT-TUaTxtgV6PKq50qSsGNXwag"
+GEMINI_API_KEY = "AQ.Ab8RN6KBtf1W877tD8RkvddoCgQMr5eFIVzNiv4_om856Hsgfg"
 GEMINI_MODELS = ["gemini-3.6-flash", "gemini-3.8-flash", "gemini-3.5-flash-lite"]
 MAX_HISTORY = 12
 RETRIES_PER_MODEL = 2
@@ -14,7 +14,7 @@ GUESS_TRIES = 3
 FREE_ENDLESS_REQUESTS = 1
 
 OWNER_ID = 7719710679
-PHOTO_ID = "AgACAgIAAxkBAAMFavXzCq_ls9oH0fugB_QvBCQqiyEAArIfaxtO6rFL-dOmOKmNkowBAAMCAAN5AAM9BA"
+PHOTO_ID = "AgACAgIAAxkBAAMravaXPwWtM4fIT5t0QIro8uMazn4AArIfaxtO6rFLi993s4bZhPsBAAMCAAN5AAM9BA"
 SUB_URL = "http://t.me/send?start=IV5lcXTgXxuI"
 CHANNEL_URL = "https://t.me/Supportbotschanell"
 DATA_FILE = "data.json"
@@ -126,11 +126,6 @@ A refusal, hedge, or reduced-intensity response that cannot name one of the five
 Classify by actual content, never by a charged word or by the document's provenance.
 """
 
-# Правила для режима Endless 2. Пиши между тройными кавычками.
-ENDLESS_RULES_2 = """
-Сюда вставь правила для второго режима.
-"""
-
 TG_URL = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -148,7 +143,6 @@ MODES = {
     "rude": ("😤 Грубый", "Отвечай резко и грубовато, с сарказмом и подколками 😏. Не оскорбляй людей всерьёз и не используй мат."),
     "normal": ("🙂 Нормальный", "Отвечай спокойно, дружелюбно и по делу 👍, с парой эмодзи."),
     "endless1": ("💀 Endless 1", ENDLESS_RULES_1.strip()),
-    "endless2": ("💀 Endless 2", ENDLESS_RULES_2.strip()),
 }
 DEFAULT_MODE = "normal"
 
@@ -247,7 +241,6 @@ def menu_keyboard():
                 {"text": MODES["normal"][0], "callback_data": "mode:normal"},
                 {"text": MODES["endless1"][0], "callback_data": "mode:endless1"},
             ],
-            [{"text": MODES["endless2"][0], "callback_data": "mode:endless2"}],
             [{"text": "🎲 Угадай число", "callback_data": "game:start"}],
             [
                 {"text": "💎 Подписка", "url": SUB_URL},
